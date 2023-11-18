@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from '@Stores/index';
 import { RenderProductInFlat, SearchBar } from '@CommonComponent/index';
@@ -7,6 +7,7 @@ import { AppContext } from '@AppContext';
 import { CartBadge } from '@CommonComponent/index';
 import { fonts } from '@Utils/Constant';
 import { getRecommendList } from '@Actions/ProductAction';
+import { CategoryTitle } from '@CommonComponent/CategoryTitle';
 
 const styles = StyleSheet.create({
   nameContainer: {
@@ -14,10 +15,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 12,
-  },
-  headingStyle: {
-    marginHorizontal: 14,
-    paddingVertical: 10,
   },
 });
 
@@ -29,7 +26,7 @@ const HomeScreen = () => {
     state => state.product.productList,
   );
 
-  const { nameContainer, headingStyle } = styles;
+  const { nameContainer } = styles;
 
   const onRefreshList = () => {
     dispatch(getRecommendList({ skip: 0, isLoading: false }));
@@ -38,6 +35,19 @@ const HomeScreen = () => {
   const onEndReachedList = () => {
     dispatch(getRecommendList({ skip, isLoading: false }));
   };
+
+  const renderRecommendedList = useMemo(() => {
+    return (
+      <RenderProductInFlat
+        flatData={data}
+        emptyText={translations.EMPTY_RECOMMENDED_TEXT}
+        isProcessing={isLoading}
+        onRefresh={onRefreshList}
+        onEndReached={onEndReachedList}
+      />
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   return (
     <Layout padding={0} headerHide>
@@ -51,16 +61,8 @@ const HomeScreen = () => {
         <SearchBar />
       </View>
       <View>
-        <CustomText size={30} style={headingStyle}>
-          {translations.RECOMMENDED}
-        </CustomText>
-        <RenderProductInFlat
-          flatData={data}
-          emptyText={translations.EMPTY_RECOMMENDED_TEXT}
-          isProcessing={isLoading}
-          onRefresh={onRefreshList}
-          onEndReached={onEndReachedList}
-        />
+        <CategoryTitle title={translations.RECOMMENDED} />
+        {renderRecommendedList}
       </View>
     </Layout>
   );

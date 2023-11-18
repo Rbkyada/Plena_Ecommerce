@@ -8,6 +8,9 @@ import { width } from '@Utils/Constant';
 import AppImages from '@Theme/AppImages';
 import { Route } from '@Routes/AppRoutes';
 import { Product } from '@Utils/Interface';
+import { FavoriteBtn } from '@SubComponents/FavoriteBtn';
+import { useAppDispatch } from '@Stores';
+import { getCurrentProductDetail } from '@Actions/ProductAction';
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -51,6 +54,7 @@ interface ProductCardProps {
 const ProductCard = (props: ProductCardProps) => {
   const { appTheme } = useContext(AppContext);
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
 
   const { thumbnail, price, title } = props?.itemDetails;
 
@@ -64,6 +68,9 @@ const ProductCard = (props: ProductCardProps) => {
   } = styles;
 
   const onCardPress = () => {
+    dispatch(
+      getCurrentProductDetail({ id: +props.itemDetails.id, isLoading: true }),
+    );
     navigateToNextScreen(navigation, {
       name: Route.PRODUCT_DETAILS_SCREEN,
     });
@@ -73,14 +80,10 @@ const ProductCard = (props: ProductCardProps) => {
     <Pressable
       style={[cardContainer, { backgroundColor: appTheme.lightGrayBack }]}
       onPress={onCardPress}>
-      <Pressable
-        style={[heartContainer, { backgroundColor: appTheme.lightOverlay }]}>
-        <Image
-          resizeMode="contain"
-          source={{ uri: AppImages.icFavorite }}
-          style={[getSize(20), { tintColor: appTheme.text }]}
-        />
-      </Pressable>
+      <FavoriteBtn
+        product={props.itemDetails}
+        exStyle={[heartContainer, { backgroundColor: appTheme.lightOverlay }]}
+      />
       <NetworkImage
         resizeMode="stretch"
         source={thumbnail}

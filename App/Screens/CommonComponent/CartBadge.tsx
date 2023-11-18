@@ -1,5 +1,13 @@
 import React, { useContext } from 'react';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import {
+  Image,
+  ImageStyle,
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from 'react-native';
 import { getRound, getSize, navigateToNextScreen } from '@Utils/Helper';
 import AppImages from '@Theme/AppImages';
 import { AppContext } from '@AppContext';
@@ -25,10 +33,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const CartBadge = () => {
+interface CartBadgeProps {
+  exContainerStyle?: StyleProp<ViewStyle>;
+  imgStyle?: StyleProp<ImageStyle>;
+}
+
+const CartBadge = (props: CartBadgeProps) => {
   const { appTheme } = useContext(AppContext);
   const navigation = useNavigation();
 
+  const { imgStyle, exContainerStyle } = props;
   const { container, badge } = styles;
 
   const onCartPress = () => {
@@ -38,7 +52,7 @@ const CartBadge = () => {
   };
 
   return (
-    <Pressable style={container} onPress={onCartPress}>
+    <Pressable style={[container, exContainerStyle]} onPress={onCartPress}>
       <View style={[badge, { backgroundColor: appTheme.darkYellow }]}>
         <CustomText style={[fonts.Light, { color: appTheme.tint }]}>
           3
@@ -47,7 +61,7 @@ const CartBadge = () => {
       <Image
         resizeMode="contain"
         source={{ uri: AppImages.icBag }}
-        style={getSize(24)}
+        style={[getSize(24), imgStyle]}
       />
     </Pressable>
   );

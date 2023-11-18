@@ -22,6 +22,7 @@ interface LayoutProps {
   title?: string;
   titleCenter?: boolean;
   titleTextStyle?: StyleProp<TextStyle>;
+  rightComponent?: JSX.Element;
   titleNumberOfLines?: number;
   titleMaxLength?: number;
   padding?: number;
@@ -45,6 +46,7 @@ interface LayoutProps {
   };
   navBarContainerStyle?: StyleProp<ViewStyle>;
   removeContainerView?: boolean;
+  onSubmitBtnType?: 'btn' | 'text' | 'custom';
 }
 
 const Layout = (props: LayoutProps) => {
@@ -65,6 +67,8 @@ const Layout = (props: LayoutProps) => {
     navBarContainerStyle,
     submit,
     removeContainerView = false,
+    onSubmitBtnType = 'btn',
+    rightComponent,
   } = props;
 
   return (
@@ -93,6 +97,8 @@ const Layout = (props: LayoutProps) => {
             exStyle={navBarContainerStyle}
             paddingHorizontal={padding}
             submit={submit}
+            onSubmitBtnType={onSubmitBtnType}
+            rightComponent={rightComponent}
           />
         )}
         {(scrollable && (

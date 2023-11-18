@@ -28,6 +28,9 @@ const DarkTheme = {
   lightOverlay: ThemeColor.lightOverlay,
   blackMat: ThemeColor.blackMat,
   tabIconFill: ThemeColor.darkYellow2,
+  fillHeart: ThemeColor.lightRed,
+  lightSlider: ThemeColor.lightGray8,
+  reviewText: ThemeColor.gray9,
 };
 
 export default DarkTheme;

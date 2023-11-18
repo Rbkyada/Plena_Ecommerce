@@ -1,7 +1,7 @@
 import { store } from '@Stores/index';
-import { getProductList } from '@Services/ProductService';
+import { getProductDetail, getProductList } from '@Services/ProductService';
 import { put } from 'redux-saga/effects';
-import { SET_RECOMMENDED_PRODUCTS } from '@Keys/index';
+import { SET_CURRENT_PRODUCT, SET_RECOMMENDED_PRODUCTS } from '@Keys/index';
 
 export function* getRecommendProductList(action: {
   type: string;
@@ -43,6 +43,49 @@ export function* getRecommendProductList(action: {
         ...productDefault,
         productList: {
           ...productDefault.productList,
+          isLoading: false,
+        },
+      },
+    });
+  }
+}
+
+export function* getCurrentProductDetail(action: {
+  type: string;
+  payload: {
+    id: string;
+  };
+}): any {
+  const productDefault = store.getState().product;
+
+  const { id } = action.payload;
+
+  try {
+    const response: any = yield getProductDetail(id);
+
+    if (response) {
+      yield put({
+        type: SET_CURRENT_PRODUCT,
+        payload: {
+          ...productDefault,
+          currentProduct: {
+            ...productDefault.currentProduct,
+            data: response,
+            isLoading: false,
+            isError: false,
+          },
+        },
+      });
+    }
+  } catch (error) {
+    console.log('error', error);
+    yield put({
+      type: SET_RECOMMENDED_PRODUCTS,
+      payload: {
+        ...productDefault,
+        currentProduct: {
+          ...productDefault.currentProduct,
+          isError: true,
           isLoading: false,
         },
       },

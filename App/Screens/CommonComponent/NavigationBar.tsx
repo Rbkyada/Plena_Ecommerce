@@ -23,11 +23,16 @@ interface NavigationBarProps {
   titleNumberOfLines?: number;
   titleCenter?: boolean;
   titleTextStyle?: StyleProp<TextStyle>;
+  onSubmitBtnType?: 'btn' | 'text' | 'custom';
+  submitStyle?: StyleProp<ViewStyle> | StyleProp<TextStyle>;
+  isProcessing?: boolean;
   titleMaxLength?: number;
   backgroundColor?: string;
   showBack?: boolean;
   exStyle?: StyleProp<ViewStyle>;
   paddingHorizontal?: number;
+  rightComponent?: JSX.Element;
+  rightImage?: string;
   submit?: {
     onSubmit?: () => void;
     isSubmitProcessing?: boolean;
@@ -53,6 +58,7 @@ const NavigationBar = (props: NavigationBarProps) => {
     showBack,
     paddingHorizontal = 0,
     submit,
+    rightComponent,
   } = props;
 
   const {
@@ -175,6 +181,7 @@ const NavigationBar = (props: NavigationBarProps) => {
         <View style={[CommonStyle.flex1]}>{renderSubmit()}</View>
       )) ||
         renderSubmit()}
+      {rightComponent && rightComponent}
     </View>
   );
 };
@@ -200,6 +207,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
     ...getRound(43),
     ...CommonStyle.center,
+    marginLeft: 14,
   },
   submit: {
     paddingVertical: 7,
@@ -211,6 +219,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width,
     ...CommonStyle.center,
+  },
+  imgStyle: {
+    ...getSize(25),
+    marginRight: 20,
+    marginLeft: 35,
   },
 });
 

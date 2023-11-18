@@ -1,7 +1,9 @@
 import { ProductDefault } from '@Default/productDefault';
 import DefaultState from '@Default/index';
 import {
+  GET_CURRENT_PRODUCT,
   GET_RECOMMENDED_PRODUCTS,
+  SET_CURRENT_PRODUCT,
   SET_RECOMMENDED_PRODUCTS,
 } from '@Keys/index';
 
@@ -18,6 +20,16 @@ const ProductReducer = (state = INIT_STATE, action: any): ProductDefault => {
         },
       };
     case SET_RECOMMENDED_PRODUCTS:
+      return { ...state, ...action.payload };
+    case GET_CURRENT_PRODUCT:
+      return {
+        ...state,
+        currentProduct: {
+          ...state.currentProduct,
+          isLoading: action.payload.isLoading,
+        },
+      };
+    case SET_CURRENT_PRODUCT:
       return { ...state, ...action.payload };
     default:
       return state;

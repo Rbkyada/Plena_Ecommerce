@@ -45,8 +45,8 @@ interface RenderProductInFlatProps {
   emptyStyle?: StyleProp<ViewStyle>;
   emptyText: string;
   isProcessing?: boolean;
-  onRefresh: () => void;
-  onEndReached: () => void;
+  onRefresh?: () => void;
+  onEndReached?: () => void;
 }
 
 const RenderProductInFlat = (props: RenderProductInFlatProps) => {
@@ -67,7 +67,7 @@ const RenderProductInFlat = (props: RenderProductInFlatProps) => {
     footerStyle,
     emptyStyle,
     emptyText,
-    isProcessing = true,
+    isProcessing = false,
     onRefresh,
     onEndReached,
   } = props;

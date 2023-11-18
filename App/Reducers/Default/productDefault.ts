@@ -7,6 +7,11 @@ export interface ProductDefault {
     isLoading: boolean;
     hasMore: boolean;
   };
+  currentProduct: {
+    data: Product;
+    isLoading: boolean;
+    isError?: boolean;
+  };
 }
 
 const productDefault: ProductDefault = {
@@ -15,6 +20,11 @@ const productDefault: ProductDefault = {
     skip: 0,
     isLoading: false,
     hasMore: true,
+  },
+  currentProduct: {
+    data: {} as Product,
+    isLoading: false,
+    isError: false,
   },
 };
 

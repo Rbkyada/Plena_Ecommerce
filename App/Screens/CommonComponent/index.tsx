@@ -12,3 +12,4 @@ export * from '@CommonComponent/IsAlertModal';
 export * from '@CommonComponent/SearchBar';
 export * from '@CommonComponent/CartBadge';
 export * from '@CommonComponent/RenderProductInFlat';
+export * from '@CommonComponent/ProductSlider';

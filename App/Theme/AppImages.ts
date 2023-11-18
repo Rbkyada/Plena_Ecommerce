@@ -18,7 +18,8 @@ const AppImages = {
   icCategory: 'ic_categories',
   icBag: 'ic_bag',
   icMore: 'ic_more',
-  icFavorite: 'ic_favorite',
+  icHeartInactive: 'ic_heart_inactive',
+  icHeartActive: 'ic_heart_active',
 };
 
 export default AppImages;
