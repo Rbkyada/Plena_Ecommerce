@@ -1,5 +1,6 @@
 const ThemeColor = {
-  primary: '#1FA2FF',
+  primary: '#2A4BA0',
+  primaryDark: '#153075',
   white: '#FFF',
   lighter: '#F3F3F3',
   light: '#DAE1E7',
@@ -11,14 +12,20 @@ const ThemeColor = {
   gray4: '#3a3a3c',
   gray5: '#2c2c2e',
   gray6: '#1c1c1e',
+  gray7: '#8891A5',
+  gray8: '#616A7D',
   lightGray: '#8e8e93',
   lightGray2: '#aeaeb2',
   lightGray3: '#c7c7cc',
   lightGray4: '#d1d1d6',
   lightGray5: '#e5e5ea',
   lightGray6: '#f2f2f7',
+  lightGray7: '#F8F9FB',
+  darkYellow: '#F9B023',
+  lightYellow: '#FFC83A',
   gradient: ['#1FA2FF', '#12D8FA'],
   overlay: 'rgba(0,0,0,0.7)',
+  lightOverlay: 'rgba(255, 255, 255, 0.8)',
 };
 
 export default ThemeColor;

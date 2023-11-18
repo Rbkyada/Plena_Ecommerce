@@ -5,18 +5,21 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import Home from '@Components/Home/Home';
-import Search from '@Components/Search/Search';
-import Users from '@Components/User/User';
-import SettingsStack from '@Routes/SettingsStack';
 import AppImages from '@Theme/AppImages';
 import { AppContext } from '@AppContext';
 import ThemeColor from '@Theme/Colors';
 import { AssetImage } from '@CommonComponent';
+import { CategoryScreen } from '@Components/Categories/CategoryScreen';
+import { MoreScreen } from '@Components/More/MoreScreen';
+import { FavoriteScreen } from '@Components/Favorite/FavoriteScreen';
 
 const Tab = createBottomTabNavigator();
 
 enum tabs {
   HomeTab = 'Home',
+  CategoryTab = 'Category',
+  FavoriteTab = 'Favorite',
+  MoreTab = 'More',
   SearchTab = 'Search',
   UsersTab = 'Users',
   SettingsTab = 'Settings',
@@ -30,22 +33,22 @@ const TABS = [
     name: 'home',
   },
   {
-    title: tabs.SearchTab,
-    icon: AppImages.search,
-    screen: Search,
-    name: 'search',
+    title: tabs.CategoryTab,
+    icon: AppImages.icCategory,
+    screen: CategoryScreen,
+    name: 'category',
   },
   {
-    title: tabs.UsersTab,
-    icon: AppImages.user,
-    screen: Users,
-    name: 'user',
+    title: tabs.FavoriteTab,
+    icon: AppImages.icFavorite,
+    screen: FavoriteScreen,
+    name: 'favorite',
   },
   {
-    title: tabs.SettingsTab,
-    icon: AppImages.settings,
-    screen: SettingsStack,
-    name: 'setting',
+    title: tabs.MoreTab,
+    icon: AppImages.icMore,
+    screen: MoreScreen,
+    name: 'more',
   },
 ];
 

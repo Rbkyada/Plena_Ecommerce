@@ -1,4 +1,3 @@
-import Login from '@Components/Login/Login';
 import { AppTab } from '@Routes/AppTab';
 
 enum Route {
@@ -7,13 +6,6 @@ enum Route {
 }
 
 const Routes = [
-  {
-    name: Route.LoginScreen,
-    screen: Login,
-    navigationOptions: {
-      headerShown: false,
-    },
-  },
   {
     name: Route.HomeScreen,
     screen: AppTab,

@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
 import { SafeAreaView } from 'react-native';
+import React, { useContext } from 'react';
 import CommonStyle from '@Theme/CommonStyle';
-import { CustomText } from '@CommonComponent';
 import { AppContext } from '@AppContext';
+import { CustomText } from '@CommonComponent/index';
 
-const Search = () => {
+const MoreScreen = () => {
   const { appTheme } = useContext(AppContext);
 
   return (
@@ -14,11 +14,9 @@ const Search = () => {
         CommonStyle.center,
         { backgroundColor: appTheme.background },
       ]}>
-      <CustomText xlarge style={{ color: appTheme.text }}>
-        Search Tab
-      </CustomText>
+      <CustomText>MoreScreen</CustomText>
     </SafeAreaView>
   );
 };
 
-export default Search;
+export { MoreScreen };

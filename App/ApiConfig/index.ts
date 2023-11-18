@@ -22,6 +22,7 @@ let ApiConfig = {
   token: null as string | null,
   login: `${baseUrlApi}login`,
   user: `${baseUrlApi}users`,
+  productList: `${baseUrlApi}products`,
 };
 
 export { ApiConfig };

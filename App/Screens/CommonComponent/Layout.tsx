@@ -81,18 +81,20 @@ const Layout = (props: LayoutProps) => {
         behavior="padding"
         style={styles.keyboardView}
         keyboardVerticalOffset={isIOS ? 0 : -500}>
-        <NavigationBar
-          title={title}
-          titleCenter={titleCenter}
-          titleTextStyle={titleTextStyle}
-          titleNumberOfLines={titleNumberOfLines}
-          titleMaxLength={titleMaxLength}
-          backgroundColor={backgroundColor}
-          showBack={showBack}
-          exStyle={navBarContainerStyle}
-          paddingHorizontal={padding}
-          submit={submit}
-        />
+        {title && (
+          <NavigationBar
+            title={title}
+            titleCenter={titleCenter}
+            titleTextStyle={titleTextStyle}
+            titleNumberOfLines={titleNumberOfLines}
+            titleMaxLength={titleMaxLength}
+            backgroundColor={backgroundColor}
+            showBack={showBack}
+            exStyle={navBarContainerStyle}
+            paddingHorizontal={padding}
+            submit={submit}
+          />
+        )}
         {(scrollable && (
           <ScrollView
             showsVerticalScrollIndicator={false}

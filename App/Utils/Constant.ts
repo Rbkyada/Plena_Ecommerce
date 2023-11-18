@@ -9,10 +9,11 @@ export const isiPad = aspectRatio < 1.6;
 
 // Custom Fonts
 export const fonts = {
-  Regular: { fontFamily: 'Regular' },
-  Light: { fontFamily: 'Light' },
-  Medium: { fontFamily: 'Medium' },
-  Bold: { fontFamily: 'Bold' },
+  Regular: { fontFamily: 'Manrope-Regular' },
+  Light: { fontFamily: 'Manrope-Light' },
+  Medium: { fontFamily: 'Manrope-Medium' },
+  SemiBold: { fontFamily: 'Manrope-SemiBold' },
+  Bold: { fontFamily: 'Manrope-Bold' },
 };
 
 // Font Sizes

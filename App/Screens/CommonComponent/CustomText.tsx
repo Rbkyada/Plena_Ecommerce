@@ -5,7 +5,7 @@ import {
   Text,
   TextStyle,
 } from 'react-native';
-import { fontSizes } from '@Utils/Constant';
+import { fontSizes, fonts } from '@Utils/Constant';
 import { AppContext } from '@AppContext';
 
 interface CustomProps {
@@ -73,7 +73,7 @@ const CustomText = (props: CustomProps) => {
     <Text
       {...props}
       numberOfLines={numberOfLines}
-      style={[getFontSize(), { color: appTheme.text }, style]}>
+      style={[getFontSize(), fonts.Regular, { color: appTheme.text }, style]}>
       {renderChildren()}
     </Text>
   );

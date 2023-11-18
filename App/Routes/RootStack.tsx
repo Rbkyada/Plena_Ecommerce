@@ -1,40 +1,13 @@
-import React, { useEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Route, Routes } from '@Routes/AppRoutes';
-import { isLoggedIn } from '@Services/UserService';
-import { DeviceEventEmitter, EmitterSubscription } from 'react-native';
-import { onLogout } from '@Utils/Helper';
-import { Authentication } from '@Utils/Enums';
 
 const Stack = createStackNavigator();
 
 const RootStack = () => {
-  let isLogout: EmitterSubscription | null = null;
-  const navigation = useNavigation();
-
-  const isUserLogin = () => {
-    const isUserLoggedIn = isLoggedIn();
-    if (!isUserLoggedIn) {
-      return Route.LoginScreen;
-    }
-    return Route.HomeScreen;
-  };
-
-  useEffect(() => {
-    if (isLogout) {
-      isLogout.remove();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    isLogout = DeviceEventEmitter.addListener(
-      Authentication.REDIRECT_LOGIN,
-      () => onLogout(navigation),
-    );
-  }, []);
-
   return (
     <Stack.Navigator
-      initialRouteName={isUserLogin()}
+      initialRouteName={Route.HomeScreen}
       screenOptions={() => ({
         headerShown: true,
         cardOverlayEnabled: true,
