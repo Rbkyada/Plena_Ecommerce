@@ -8,6 +8,7 @@ import { RootStack } from '@Routes/RootStack';
 
 const App = () => {
   const { appTheme } = useContext(AppContext);
+
   return (
     <View style={CommonStyle.flexContainer}>
       <StatusBar

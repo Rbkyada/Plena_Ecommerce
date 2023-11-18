@@ -1,23 +1,28 @@
 import React, { useContext } from 'react';
 import { View, Pressable, Image, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { CustomText, NetworkImage } from '@CommonComponent';
 import { AppContext } from '@AppContext';
-import { getRound, getSize } from '@Utils/Helper';
+import { getRound, getSize, navigateToNextScreen } from '@Utils/Helper';
 import { width } from '@Utils/Constant';
 import AppImages from '@Theme/AppImages';
+import { Route } from '@Routes/AppRoutes';
+import { Product } from '@Utils/Interface';
 
 const styles = StyleSheet.create({
   cardContainer: {
     borderRadius: 12,
     overflow: 'hidden',
     position: 'relative',
+    width: width * 0.45,
   },
   imgStyle: {
     height: 150,
     width: width * 0.45,
   },
   priceContainer: {
-    padding: 15,
+    paddingVertical: 10,
+    padding: 13,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -34,10 +39,20 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 12,
   },
+  priceInnerView: {
+    maxWidth: width * 0.32,
+  },
 });
 
-const ProductCard = () => {
+interface ProductCardProps {
+  itemDetails: Product;
+}
+
+const ProductCard = (props: ProductCardProps) => {
   const { appTheme } = useContext(AppContext);
+  const navigation = useNavigation();
+
+  const { thumbnail, price, title } = props?.itemDetails;
 
   const {
     cardContainer,
@@ -45,10 +60,19 @@ const ProductCard = () => {
     priceContainer,
     addCartBtnStyle,
     heartContainer,
+    priceInnerView,
   } = styles;
 
+  const onCardPress = () => {
+    navigateToNextScreen(navigation, {
+      name: Route.PRODUCT_DETAILS_SCREEN,
+    });
+  };
+
   return (
-    <View style={[cardContainer, { backgroundColor: appTheme.lightGrayBack }]}>
+    <Pressable
+      style={[cardContainer, { backgroundColor: appTheme.lightGrayBack }]}
+      onPress={onCardPress}>
       <Pressable
         style={[heartContainer, { backgroundColor: appTheme.lightOverlay }]}>
         <Image
@@ -59,16 +83,16 @@ const ProductCard = () => {
       </Pressable>
       <NetworkImage
         resizeMode="stretch"
-        source={'https://i.dummyjson.com/data/products/1/thumbnail.jpg'}
+        source={thumbnail}
         imageStyle={imgStyle}
       />
       <View style={priceContainer}>
-        <View>
+        <View style={priceInnerView}>
           <CustomText large style={{ color: appTheme.text }}>
-            $325
+            {`$${price}`}
           </CustomText>
-          <CustomText style={{ color: appTheme.subText }}>
-            Clown Tang.H03
+          <CustomText style={{ color: appTheme.subText }} numberOfLines={1}>
+            {title}
           </CustomText>
         </View>
         <Pressable
@@ -80,7 +104,7 @@ const ProductCard = () => {
           />
         </Pressable>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

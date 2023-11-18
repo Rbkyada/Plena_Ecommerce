@@ -22,6 +22,7 @@ axios.interceptors.request.use(
     let request = config;
     request.headers = getHeaders();
     request.url = configureUrl(config.url!);
+    console.log('request', request.url);
     return request;
   },
   error => error,

@@ -27,6 +27,8 @@ const LightTheme = {
   lightGrayBack: ThemeColor.lightGray7,
   subText: ThemeColor.gray8,
   lightOverlay: ThemeColor.lightOverlay,
+  blackMat: ThemeColor.blackMat,
+  tabIconFill: ThemeColor.darkYellow2,
 };
 
 export default LightTheme;

@@ -10,6 +10,7 @@ const en = {
   DELIVERY_TO: 'Delivery to',
   WITH_IN: 'With in',
   RECOMMENDED: 'Recommended',
+  EMPTY_RECOMMENDED_TEXT: 'No recommended products found',
 };
 
 export { en };

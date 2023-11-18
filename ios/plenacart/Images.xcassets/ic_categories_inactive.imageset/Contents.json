@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "ic_categories.png",
+      "filename" : "ic_categories_inactive.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

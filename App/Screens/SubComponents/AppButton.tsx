@@ -60,8 +60,7 @@ const ButtonComponent = (props: GradientButtonProps) => {
     <Pressable
       onPress={() => onPress()}
       disabled={isProcessing}
-      style={[marginVertical, outerStyle]}
-      android_ripple={CommonStyle.androidRipple}>
+      style={[marginVertical, outerStyle]}>
       <LinearGradient
         colors={
           (!isGradient &&

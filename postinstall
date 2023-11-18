@@ -6,3 +6,5 @@ fi
 
 node ./moduleResolver.js
 node ./env.config/env.config.js
+
+cp App/PostInstall/build.gradle node_modules/curved-bottom-navigation-bar/android/build.gradle

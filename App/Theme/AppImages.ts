@@ -1,7 +1,12 @@
 const AppImages = {
   passwordOpen: 'password_open',
   passwordClosed: 'password_closed',
-  home: 'home_active',
+  icHomeActive: 'home_active',
+  icHomeInactive: 'home_inactive',
+  icCategoryActive: 'ic_categories_active',
+  icCategoryInactive: 'ic_categories_inactive',
+  icFavoriteActive: 'ic_favorite_active',
+  icFavoriteInactive: 'ic_favorite_inactive',
   search: 'ic_search',
   settings: 'settings',
   user: 'profile',

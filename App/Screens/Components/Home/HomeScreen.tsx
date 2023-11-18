@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { useAppDispatch, useAppSelector } from '@Stores/index';
 import { RenderProductInFlat, SearchBar } from '@CommonComponent/index';
 import { CustomText, Layout } from '@CommonComponent';
 import { AppContext } from '@AppContext';
 import { CartBadge } from '@CommonComponent/index';
 import { fonts } from '@Utils/Constant';
+import { getRecommendList } from '@Actions/ProductAction';
 
 const styles = StyleSheet.create({
   nameContainer: {
@@ -15,16 +17,30 @@ const styles = StyleSheet.create({
   },
   headingStyle: {
     marginHorizontal: 14,
+    paddingVertical: 10,
   },
 });
 
-const Home = () => {
+const HomeScreen = () => {
   const { appTheme, translations } = useContext(AppContext);
+  const dispatch = useAppDispatch();
+
+  const { skip, data, isLoading } = useAppSelector(
+    state => state.product.productList,
+  );
 
   const { nameContainer, headingStyle } = styles;
 
+  const onRefreshList = () => {
+    dispatch(getRecommendList({ skip: 0, isLoading: false }));
+  };
+
+  const onEndReachedList = () => {
+    dispatch(getRecommendList({ skip, isLoading: false }));
+  };
+
   return (
-    <Layout padding={0}>
+    <Layout padding={0} headerHide>
       <View style={{ backgroundColor: appTheme.themeColor }}>
         <View style={nameContainer}>
           <CustomText xxlarge style={[fonts.Medium, { color: appTheme.tint }]}>
@@ -38,10 +54,16 @@ const Home = () => {
         <CustomText size={30} style={headingStyle}>
           {translations.RECOMMENDED}
         </CustomText>
-        <RenderProductInFlat />
+        <RenderProductInFlat
+          flatData={data}
+          emptyText={translations.EMPTY_RECOMMENDED_TEXT}
+          isProcessing={isLoading}
+          onRefresh={onRefreshList}
+          onEndReached={onEndReachedList}
+        />
       </View>
     </Layout>
   );
 };
 
-export default Home;
+export { HomeScreen };

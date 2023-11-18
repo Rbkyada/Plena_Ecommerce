@@ -1,10 +1,9 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useContext } from 'react';
-import {
-  BottomTabNavigationOptions,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
-import Home from '@Components/Home/Home';
+import AnimatedTabBar, { TabsConfigsType } from 'curved-bottom-navigation-bar';
+import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { HomeScreen } from '@Components/Home/HomeScreen';
 import AppImages from '@Theme/AppImages';
 import { AppContext } from '@AppContext';
 import ThemeColor from '@Theme/Colors';
@@ -12,6 +11,7 @@ import { AssetImage } from '@CommonComponent';
 import { CategoryScreen } from '@Components/Categories/CategoryScreen';
 import { MoreScreen } from '@Components/More/MoreScreen';
 import { FavoriteScreen } from '@Components/Favorite/FavoriteScreen';
+import { TabIcon } from '@SubComponents/TabIcon';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,32 +28,73 @@ enum tabs {
 const TABS = [
   {
     title: tabs.HomeTab,
-    icon: AppImages.home,
-    screen: Home,
-    name: 'home',
+    icon: AppImages.icHomeInactive,
+    screen: HomeScreen,
+    name: 'Home',
   },
   {
     title: tabs.CategoryTab,
-    icon: AppImages.icCategory,
+    icon: AppImages.icCategoryInactive,
     screen: CategoryScreen,
-    name: 'category',
+    name: 'Category',
   },
   {
     title: tabs.FavoriteTab,
-    icon: AppImages.icFavorite,
+    icon: AppImages.icFavoriteInactive,
     screen: FavoriteScreen,
-    name: 'favorite',
+    name: 'Favorite',
   },
   {
     title: tabs.MoreTab,
     icon: AppImages.icMore,
     screen: MoreScreen,
-    name: 'more',
+    name: 'More',
   },
 ];
 
 const AppTab = () => {
   const { appTheme } = useContext(AppContext);
+
+  const MyTabs: TabsConfigsType = {
+    Home: {
+      icon: ({ focused }) => (
+        <TabIcon
+          focused={focused}
+          tabIcon={
+            (focused && AppImages.icHomeActive) || AppImages.icHomeInactive
+          }
+        />
+      ),
+    },
+    Category: {
+      icon: ({ focused }) => (
+        <TabIcon
+          focused={focused}
+          tabIcon={
+            (focused && AppImages.icCategoryActive) ||
+            AppImages.icCategoryInactive
+          }
+        />
+      ),
+    },
+    Favorite: {
+      icon: ({ focused }) => (
+        <TabIcon
+          focused={focused}
+          tabIcon={
+            (focused && AppImages.icFavoriteActive) ||
+            AppImages.icFavoriteInactive
+          }
+        />
+      ),
+    },
+    More: {
+      icon: ({ focused }) => (
+        <TabIcon focused={focused} tabIcon={AppImages.icMore} />
+      ),
+    },
+  };
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -64,6 +105,14 @@ const AppTab = () => {
           backgroundColor: appTheme.tab,
         },
       }}
+      tabBar={props => (
+        <AnimatedTabBar
+          tabs={MyTabs}
+          {...props}
+          titleShown={true}
+          dotColor={appTheme.blackMat}
+        />
+      )}
       sceneContainerStyle={{
         backgroundColor: appTheme.background,
       }}>

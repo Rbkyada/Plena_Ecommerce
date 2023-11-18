@@ -16,7 +16,7 @@ import { AppContext } from '@AppContext';
 import { CustomText } from '@CommonComponent/CustomText';
 import { ButtonComponent } from '@SubComponents';
 import { width } from '@Utils/Constant';
-import { getSize } from '@Utils/Helper';
+import { getSize, getRound } from '@Utils/Helper';
 
 interface NavigationBarProps {
   title?: string;
@@ -154,8 +154,7 @@ const NavigationBar = (props: NavigationBarProps) => {
       ]}>
       {(showBack && (
         <Pressable
-          style={styles.backBtn}
-          android_ripple={CommonStyle.androidRipple}
+          style={[styles.backBtn, { backgroundColor: appTheme.lightGrayBack }]}
           onPress={() => navigation.goBack()}>
           <Image
             source={{ uri: AppImages.icBack }}
@@ -193,10 +192,15 @@ const styles = StyleSheet.create({
   },
   title: { fontWeight: 'bold' },
   icBack: {
-    height: 20,
-    width: 20,
+    height: 14,
+    width: 14,
   },
-  backBtn: { paddingVertical: 5, zIndex: 1 },
+  backBtn: {
+    paddingVertical: 5,
+    zIndex: 1,
+    ...getRound(43),
+    ...CommonStyle.center,
+  },
   submit: {
     paddingVertical: 7,
     paddingHorizontal: 15,

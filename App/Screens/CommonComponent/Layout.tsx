@@ -36,6 +36,7 @@ interface LayoutProps {
     submitImageStyle?: StyleProp<ImageStyle>;
   };
   scrollable?: boolean;
+  headerHide?: boolean;
   backgroundColor?: string;
   showBack?: boolean;
   refreshControl?: {
@@ -59,6 +60,7 @@ const Layout = (props: LayoutProps) => {
     scrollable = false,
     backgroundColor,
     showBack = false,
+    headerHide = false,
     refreshControl,
     navBarContainerStyle,
     submit,
@@ -73,15 +75,13 @@ const Layout = (props: LayoutProps) => {
       ]}>
       <StatusBar
         backgroundColor={appTheme.themeColor}
-        barStyle={
-          (appTheme.type === 'dark' && 'light-content') || 'dark-content'
-        }
+        barStyle={'light-content'}
       />
       <KeyboardAvoidingView
         behavior="padding"
         style={styles.keyboardView}
         keyboardVerticalOffset={isIOS ? 0 : -500}>
-        {title && (
+        {!headerHide && (
           <NavigationBar
             title={title}
             titleCenter={titleCenter}

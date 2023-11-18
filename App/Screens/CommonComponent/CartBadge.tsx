@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
-import { getRound, getSize } from '@Utils/Helper';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { getRound, getSize, navigateToNextScreen } from '@Utils/Helper';
 import AppImages from '@Theme/AppImages';
 import { AppContext } from '@AppContext';
 import { CustomText } from '@CommonComponent';
 import { fonts } from '@Utils/Constant';
+import { useNavigation } from '@react-navigation/native';
+import { Route } from '@Routes/AppRoutes';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,11 +27,18 @@ const styles = StyleSheet.create({
 
 const CartBadge = () => {
   const { appTheme } = useContext(AppContext);
+  const navigation = useNavigation();
 
   const { container, badge } = styles;
 
+  const onCartPress = () => {
+    navigateToNextScreen(navigation, {
+      name: Route.CART_SCREEN,
+    });
+  };
+
   return (
-    <View style={container}>
+    <Pressable style={container} onPress={onCartPress}>
       <View style={[badge, { backgroundColor: appTheme.darkYellow }]}>
         <CustomText style={[fonts.Light, { color: appTheme.tint }]}>
           3
@@ -40,7 +49,7 @@ const CartBadge = () => {
         source={{ uri: AppImages.icBag }}
         style={getSize(24)}
       />
-    </View>
+    </Pressable>
   );
 };
 

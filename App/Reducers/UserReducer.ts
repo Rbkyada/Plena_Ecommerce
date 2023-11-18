@@ -1,6 +1,6 @@
 import { SET_USER } from '@Keys';
 import DefaultState from '@Default';
-import { UserDefault } from '@Default/UserDefault';
+import { UserDefault } from 'Reducers/Default/UserDefault';
 
 const INIT_STATE = DefaultState.user;
 

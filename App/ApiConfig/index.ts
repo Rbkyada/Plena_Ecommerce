@@ -14,7 +14,7 @@ const currentEnv = Config.ENVIRONMENT ?? ENVIRONMENT.DEV;
 const baseUrl =
   (currentEnv === ENVIRONMENT.PROD && productionUrl) || developmentUrl;
 
-const baseUrlApi = `${baseUrl}api/`;
+const baseUrlApi = `${baseUrl}`;
 
 let ApiConfig = {
   baseUrl,

@@ -57,7 +57,6 @@ const BottomModalContainer = (props: React.PropsWithChildren<CustomProps>) => {
             </CustomText>
             {props.secondaryBtn && (
               <Pressable
-                android_ripple={CommonStyle.androidRipple}
                 style={[
                   styles.secondBtn,
                   { backgroundColor: appTheme.text },
