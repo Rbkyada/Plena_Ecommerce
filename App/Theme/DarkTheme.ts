@@ -31,6 +31,7 @@ const DarkTheme = {
   fillHeart: ThemeColor.lightRed,
   lightSlider: ThemeColor.lightGray8,
   reviewText: ThemeColor.gray9,
+  dotsBackground: ThemeColor.lightGray5,
 };
 
 export default DarkTheme;

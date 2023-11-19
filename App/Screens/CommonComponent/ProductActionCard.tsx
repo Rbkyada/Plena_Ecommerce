@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
+import Animated, { Layout, ZoomIn } from 'react-native-reanimated';
 import cloneDeep from 'lodash/cloneDeep';
 import { AppContext } from '@AppContext';
 import { NetworkImage } from '@CommonComponent/NetworkImage';
@@ -33,14 +34,16 @@ const styles = StyleSheet.create({
 
 interface ProductActionCardProps {
   item: CartProduct;
+  index: number;
 }
 
 const ProductActionCard = (props: ProductActionCardProps) => {
   const { appTheme } = useContext(AppContext);
   const cartDefault = useAppSelector(state => state.cart);
   const dispatch = useAppDispatch();
+  const initialMode = useRef<boolean>(true);
 
-  const { item } = props;
+  const { item, index } = props;
 
   const { cardContainer, bannerStyle, titleContainer, actionBtnContainer } =
     styles;
@@ -87,8 +90,15 @@ const ProductActionCard = (props: ProductActionCardProps) => {
     }
   };
 
+  useEffect(() => {
+    initialMode.current = false;
+  }, []);
+
   return (
-    <View style={cardContainer}>
+    <Animated.View
+      style={cardContainer}
+      layout={Layout}
+      entering={(initialMode.current && ZoomIn.delay(index * 250)) || ZoomIn}>
       <NetworkImage
         resizeMode="cover"
         source={item.thumbnail}
@@ -118,7 +128,7 @@ const ProductActionCard = (props: ProductActionCardProps) => {
           onBtnPress={() => onIncrementOrDecrement(true)}
         />
       </View>
-    </View>
+    </Animated.View>
   );
 };
 

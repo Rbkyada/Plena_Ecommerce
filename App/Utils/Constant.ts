@@ -44,7 +44,7 @@ export const ADS_BANNER = [
 ];
 
 export const USER_ADDRESS = [
-  { label: 'Green Way 3000, Sylhet yyy8yy89y9y', value: '1' },
+  { label: 'Green Way 3000, Sylhet', value: '1' },
   { label: '123 Main Street, Anytown, USA', value: '2' },
 ];
 

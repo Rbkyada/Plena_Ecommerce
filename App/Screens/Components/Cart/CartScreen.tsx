@@ -50,8 +50,14 @@ const CartScreen = () => {
   const { btnStyle, btnContainer, emptyCartText, flatStyle, separatorStyle } =
     styles;
 
-  const renderItem = ({ item }: { item: CartProduct }) => {
-    return <ProductActionCard item={item} />;
+  const renderItem = ({
+    item,
+    index,
+  }: {
+    item: CartProduct;
+    index: number;
+  }) => {
+    return <ProductActionCard item={item} index={index} />;
   };
 
   const renderEmptyCart = () => {

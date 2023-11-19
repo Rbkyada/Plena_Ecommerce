@@ -117,7 +117,7 @@ const AdsBanner = memo((props: AdsBannerProps) => {
                   width: dotWidth,
                   backgroundColor:
                     (isSelected && appTheme.themeColor) ||
-                    appTheme.lightGrayBack,
+                    appTheme.dotsBackground,
                 },
               ]}
             />
