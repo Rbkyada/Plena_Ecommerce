@@ -47,6 +47,8 @@ interface LayoutProps {
   navBarContainerStyle?: StyleProp<ViewStyle>;
   removeContainerView?: boolean;
   onSubmitBtnType?: 'btn' | 'text' | 'custom';
+  statusBarColor?: string;
+  statusBarStyle?: 'light-content' | 'dark-content';
 }
 
 const Layout = (props: LayoutProps) => {
@@ -69,6 +71,8 @@ const Layout = (props: LayoutProps) => {
     removeContainerView = false,
     onSubmitBtnType = 'btn',
     rightComponent,
+    statusBarColor = appTheme.themeColor,
+    statusBarStyle = 'light-content',
   } = props;
 
   return (
@@ -77,10 +81,7 @@ const Layout = (props: LayoutProps) => {
         CommonStyle.flex1,
         { backgroundColor: backgroundColor ?? appTheme.background },
       ]}>
-      <StatusBar
-        backgroundColor={appTheme.themeColor}
-        barStyle={'light-content'}
-      />
+      <StatusBar backgroundColor={statusBarColor} barStyle={statusBarStyle} />
       <KeyboardAvoidingView
         behavior="padding"
         style={styles.keyboardView}

@@ -235,6 +235,8 @@ const ProductDetailsScreen = () => {
       showBack
       padding={0}
       scrollable
+      statusBarColor={appTheme.tint}
+      statusBarStyle="dark-content"
       onSubmitBtnType={'custom'}
       rightComponent={
         <CartBadge

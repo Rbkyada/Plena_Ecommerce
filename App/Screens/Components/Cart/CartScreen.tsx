@@ -76,6 +76,8 @@ const CartScreen = () => {
         padding={0}
         title={`${translations.SHOPPING_CART} (${totalCartProduct})`}
         showBack
+        statusBarColor={appTheme.tint}
+        statusBarStyle="dark-content"
         scrollable
         titleTextStyle={[fonts.Light]}>
         <View>

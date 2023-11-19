@@ -4,13 +4,13 @@ import { AppContext } from '@AppContext';
 import { useAppSelector } from '@Stores';
 import { CustomText } from '@CommonComponent/CustomText';
 import { BillingInfo } from '@Utils/Interface';
-import { DELIVERY_CHARGES } from '@Utils/Constant';
+import { DELIVERY_CHARGES, height } from '@Utils/Constant';
 
 const styles = StyleSheet.create({
   billingOuterView: {
     flex: 1,
     justifyContent: 'flex-end',
-    marginBottom: 60,
+    marginBottom: height * 0.1,
   },
   billingContainer: {
     margin: 20,

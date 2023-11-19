@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   View,
   ActivityIndicator,
@@ -9,6 +9,7 @@ import {
   Image,
 } from 'react-native';
 import FastImage, { FastImageProps } from 'react-native-fast-image';
+import { AppContext } from '@AppContext';
 
 interface NetworkImageProps {
   imageStyle?:
@@ -24,6 +25,8 @@ interface NetworkImageProps {
 }
 
 const NetworkImage = (props: NetworkImageProps) => {
+  const { appTheme } = useContext(AppContext);
+
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
 
@@ -36,7 +39,7 @@ const NetworkImage = (props: NetworkImageProps) => {
         />
       );
     } else {
-      return <ActivityIndicator />;
+      return <ActivityIndicator color={appTheme.themeColor} />;
     }
   };
 
@@ -52,7 +55,7 @@ const NetworkImage = (props: NetworkImageProps) => {
         />
       );
     } else {
-      return <ActivityIndicator />;
+      return <ActivityIndicator color={appTheme.themeColor} />;
     }
   };
 

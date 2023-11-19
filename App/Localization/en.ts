@@ -11,6 +11,7 @@ const en = {
   WITH_IN: 'With in',
   RECOMMENDED: 'Recommended',
   EMPTY_RECOMMENDED_TEXT: 'No recommended products found',
+  EMPTY_FAVORITES_TEXT: 'No favorite products found',
   FAVORITES: 'Favorites',
   SOMETHING_WENT_WRONG: 'Something went wrong',
   ADD_TO_CART: 'Add to cart',

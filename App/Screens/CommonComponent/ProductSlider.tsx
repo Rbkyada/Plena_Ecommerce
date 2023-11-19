@@ -73,6 +73,8 @@ const ProductSlider = (props: ProductSliderProps) => {
     setIndex(viewableItems[0]?.index);
   }).current;
 
+  const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
+
   const renderDots = useCallback(() => {
     return (
       <View style={[dotContainer]}>
@@ -109,6 +111,7 @@ const ProductSlider = (props: ProductSliderProps) => {
         showsHorizontalScrollIndicator={false}
         renderItem={renderItem}
         style={flatStyle}
+        viewabilityConfig={viewConfig}
         onViewableItemsChanged={handleViewableItemsChanged}
         keyExtractor={(item: string, index: number) => index.toString()}
       />
