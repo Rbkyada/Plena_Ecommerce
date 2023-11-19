@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { memo, useContext, useRef, useState } from 'react';
 import { View, StyleSheet, Pressable, Animated } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import { width } from '@Utils/Constant';
@@ -43,7 +43,7 @@ interface AdsBannerProps {
   bannerData: string[];
 }
 
-const AdsBanner = (props: AdsBannerProps) => {
+const AdsBanner = memo((props: AdsBannerProps) => {
   const { appTheme } = useContext(AppContext);
 
   let scrollX = useRef(new Animated.Value(0)).current;
@@ -126,6 +126,6 @@ const AdsBanner = (props: AdsBannerProps) => {
       </View>
     </View>
   );
-};
+});
 
 export { AdsBanner };

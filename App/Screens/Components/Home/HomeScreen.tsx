@@ -1,5 +1,5 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react';
-import { RefreshControl, StyleSheet, View } from 'react-native';
+import React, { useContext, useMemo, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from '@Stores/index';
 import { RenderProductInFlat, SearchBar } from '@CommonComponent/index';
 import { CustomText, Layout } from '@CommonComponent';
@@ -17,7 +17,6 @@ import { CategoryTitle } from '@CommonComponent/CategoryTitle';
 import { AdsBanner } from '@CommonComponent/AdsBanner';
 import { DropDownSheet } from '@SubComponents/DropDownSheet';
 import CommonStyle from '@Theme/CommonStyle';
-import { ScrollView } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
   nameContainer: {
@@ -55,12 +54,10 @@ const HomeScreen = () => {
   };
 
   const onEndReachedList = () => {
-    console.log('onEndReachedList');
     dispatch(getRecommendList({ skip, isLoading: false }));
   };
 
   const renderRecommendedList = useMemo(() => {
-    console.log('renderRecommendedList');
     return (
       <RenderProductInFlat
         flatData={data}
@@ -68,22 +65,16 @@ const HomeScreen = () => {
         isProcessing={isLoading}
         onRefresh={onRefreshList}
         onEndReached={onEndReachedList}
+        renderHeader={() => (
+          <>
+            <AdsBanner bannerData={ADS_BANNER} />
+            <CategoryTitle title={translations.RECOMMENDED} />
+          </>
+        )}
       />
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, isLoading]);
-
-  const refreshControl = useCallback(
-    () => (
-      <RefreshControl
-        refreshing={false}
-        onRefresh={() => onRefreshList()}
-        tintColor={appTheme.themeColor}
-      />
-    ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
 
   return (
     <Layout padding={0} headerHide>
@@ -124,16 +115,7 @@ const HomeScreen = () => {
           />
         </View>
       </View>
-      <ScrollView
-        bounces={true}
-        showsHorizontalScrollIndicator={false}
-        onEnded={() => onEndReachedList()}
-        showsVerticalScrollIndicator={false}
-        refreshControl={refreshControl()}>
-        <AdsBanner bannerData={ADS_BANNER} />
-        <CategoryTitle title={translations.RECOMMENDED} />
-        {renderRecommendedList}
-      </ScrollView>
+      {renderRecommendedList}
     </Layout>
   );
 };

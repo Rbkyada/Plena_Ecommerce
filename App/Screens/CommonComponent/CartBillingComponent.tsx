@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { AppContext } from '@AppContext';
-import { useAppSelector } from '@Stores';
 import { CustomText } from '@CommonComponent/CustomText';
-import { BillingInfo } from '@Utils/Interface';
-import { DELIVERY_CHARGES, height } from '@Utils/Constant';
+import { height } from '@Utils/Constant';
+import { useCartBillingHandler } from '@Hooks/use-cartbilling-handler';
 
 const styles = StyleSheet.create({
   billingOuterView: {
@@ -27,32 +26,10 @@ const styles = StyleSheet.create({
 
 const CartBillingComponent = () => {
   const { appTheme, translations } = useContext(AppContext);
-  const { cartList } = useAppSelector(state => state.cart);
 
   const { billingContainer, billingRowStyle, billingOuterView } = styles;
 
-  const [billingInfo, setBillingInfo] = useState<BillingInfo>({
-    payable: 0,
-    delivery: 0,
-    total: 0,
-  });
-
-  useEffect(() => {
-    let billing: BillingInfo = {
-      payable: 0,
-      delivery: 0,
-      total: 0,
-    };
-
-    cartList &&
-      cartList?.forEach(item => {
-        billing.payable += item.price * item.quantity;
-      });
-
-    billing.delivery = DELIVERY_CHARGES;
-    billing.total = billing.payable + billing.delivery;
-    setBillingInfo(billing);
-  }, [cartList]);
+  const { billingInfo } = useCartBillingHandler();
 
   const renderBillingInfo = (title: string, value: string) => {
     return (

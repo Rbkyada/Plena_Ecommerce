@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleProp, StyleSheet, TextStyle } from 'react-native';
 import { CustomText } from '@CommonComponent/CustomText';
 
@@ -14,7 +14,7 @@ interface CategoryTitleProps {
   exTextStyle?: StyleProp<TextStyle>;
 }
 
-const CategoryTitle = (props: CategoryTitleProps) => {
+const CategoryTitle = memo((props: CategoryTitleProps) => {
   const { exTextStyle, title } = props;
   const { titleStyle } = styles;
 
@@ -23,6 +23,6 @@ const CategoryTitle = (props: CategoryTitleProps) => {
       {title}
     </CustomText>
   );
-};
+});
 
 export { CategoryTitle };

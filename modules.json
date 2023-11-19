@@ -1,5 +1,5 @@
 {
-  "root":".",
+  "root": ".",
   "base": "App",
   "modules": [
     "Actions",
@@ -17,6 +17,7 @@
     "Theme",
     "Services",
     "Utils",
-    "Localization"
+    "Localization",
+    "Hooks"
   ]
 }

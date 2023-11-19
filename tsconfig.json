@@ -103,6 +103,12 @@
       ],
       "@Localization/*": [
         "./App/Localization/*"
+      ],
+      "@Hooks": [
+        "./App/Hooks/index"
+      ],
+      "@Hooks/*": [
+        "./App/Hooks/*"
       ]
     },
     "allowJs": true,

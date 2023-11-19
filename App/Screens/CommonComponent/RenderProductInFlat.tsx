@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useCallback, useContext } from 'react';
 import {
   View,
   FlatList,
@@ -47,6 +48,7 @@ interface RenderProductInFlatProps {
   isProcessing?: boolean;
   onRefresh?: () => void;
   onEndReached?: () => void;
+  renderHeader?: () => JSX.Element;
 }
 
 const RenderProductInFlat = (props: RenderProductInFlatProps) => {
@@ -70,17 +72,18 @@ const RenderProductInFlat = (props: RenderProductInFlatProps) => {
     isProcessing = false,
     onRefresh,
     onEndReached,
+    renderHeader,
   } = props;
 
   const renderItem = ({ item }: { item: Product }) => {
     return <ProductCard itemDetails={item} />;
   };
 
-  const itemSeparator = () => {
+  const itemSeparator = useCallback(() => {
     return <View style={[separatorStyle, exSeparatorStyle]} />;
-  };
+  }, []);
 
-  const renderEmptyComponent = () => {
+  const renderEmptyComponent = useCallback(() => {
     return (
       <View style={[emptyTextStyle, emptyStyle]}>
         <CustomText style={[fonts.SemiBold, { color: appTheme.text }]}>
@@ -88,14 +91,17 @@ const RenderProductInFlat = (props: RenderProductInFlatProps) => {
         </CustomText>
       </View>
     );
-  };
+  }, []);
 
-  const refreshControl = () => (
-    <RefreshControl
-      refreshing={false}
-      onRefresh={onRefresh}
-      tintColor={appTheme.themeColor}
-    />
+  const refreshControl = useCallback(
+    () => (
+      <RefreshControl
+        refreshing={false}
+        onRefresh={onRefresh}
+        tintColor={appTheme.themeColor}
+      />
+    ),
+    [],
   );
 
   return (
@@ -119,6 +125,7 @@ const RenderProductInFlat = (props: RenderProductInFlatProps) => {
           onEndReachedThreshold={0.5}
           onEndReached={onEndReached}
           refreshControl={refreshControl()}
+          ListHeaderComponent={renderHeader}
           ListFooterComponent={<View />}
           ListFooterComponentStyle={footerStyle}
         />
