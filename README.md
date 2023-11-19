@@ -1,6 +1,6 @@
 <p align="center">
   <a>
-    <img width="100px" src=".https://iili.io/JnVHzTQ.png">
+    <img width="100px" src="https://iili.io/JnVHzTQ.png">
   </a>
   <h1 align="center">Plena Cart</h1>  
 </p>
