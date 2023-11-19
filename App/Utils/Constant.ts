@@ -35,3 +35,10 @@ export const alertData = {
 };
 
 export const DELIVERY_CHARGES = 2;
+
+export const ADS_BANNER = [
+  'https://iili.io/JnE1k3F.jpg',
+  'https://iili.io/JnEViDG.jpg',
+  'https://iili.io/JnEcQ3u.jpg',
+  'https://iili.io/JnEXo42.jpg',
+];

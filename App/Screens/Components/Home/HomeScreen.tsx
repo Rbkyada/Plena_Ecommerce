@@ -5,9 +5,10 @@ import { RenderProductInFlat, SearchBar } from '@CommonComponent/index';
 import { CustomText, Layout } from '@CommonComponent';
 import { AppContext } from '@AppContext';
 import { CartBadge } from '@CommonComponent/index';
-import { fonts } from '@Utils/Constant';
+import { ADS_BANNER, fonts } from '@Utils/Constant';
 import { getRecommendList } from '@Actions/ProductAction';
 import { CategoryTitle } from '@CommonComponent/CategoryTitle';
+import { AdsBanner } from '@CommonComponent/AdsBanner';
 
 const styles = StyleSheet.create({
   nameContainer: {
@@ -60,6 +61,7 @@ const HomeScreen = () => {
         </View>
         <SearchBar />
       </View>
+      <AdsBanner bannerData={ADS_BANNER} />
       <View>
         <CategoryTitle title={translations.RECOMMENDED} />
         {renderRecommendedList}
