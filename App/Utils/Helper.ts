@@ -9,6 +9,7 @@ import { Route } from '@Routes/AppRoutes';
 import { store } from '@Stores';
 import { userLogout } from '@Actions/UserActions';
 import { Linking } from 'react-native';
+import { Product } from './Interface';
 
 export const isValidPhoneNo = (phoneNo: string) => {
   const phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;

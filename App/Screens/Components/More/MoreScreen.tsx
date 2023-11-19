@@ -1,8 +1,9 @@
-import { SafeAreaView } from 'react-native';
 import React, { useContext } from 'react';
+import { SafeAreaView } from 'react-native';
 import CommonStyle from '@Theme/CommonStyle';
 import { AppContext } from '@AppContext';
 import { CustomText } from '@CommonComponent/index';
+import { fonts } from '@Utils/Constant';
 
 const MoreScreen = () => {
   const { appTheme } = useContext(AppContext);
@@ -14,7 +15,7 @@ const MoreScreen = () => {
         CommonStyle.center,
         { backgroundColor: appTheme.background },
       ]}>
-      <CustomText>MoreScreen</CustomText>
+      <CustomText style={[fonts.SemiBold]}>More Details</CustomText>
     </SafeAreaView>
   );
 };

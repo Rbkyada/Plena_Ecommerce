@@ -15,6 +15,7 @@ import { CustomText } from '@CommonComponent';
 import { fonts } from '@Utils/Constant';
 import { useNavigation } from '@react-navigation/native';
 import { Route } from '@Routes/AppRoutes';
+import { useAppSelector } from '@Stores';
 
 const styles = StyleSheet.create({
   container: {
@@ -42,6 +43,8 @@ const CartBadge = (props: CartBadgeProps) => {
   const { appTheme } = useContext(AppContext);
   const navigation = useNavigation();
 
+  const { totalCartProduct } = useAppSelector(state => state.cart);
+
   const { imgStyle, exContainerStyle } = props;
   const { container, badge } = styles;
 
@@ -53,11 +56,13 @@ const CartBadge = (props: CartBadgeProps) => {
 
   return (
     <Pressable style={[container, exContainerStyle]} onPress={onCartPress}>
-      <View style={[badge, { backgroundColor: appTheme.darkYellow }]}>
-        <CustomText style={[fonts.Light, { color: appTheme.tint }]}>
-          3
-        </CustomText>
-      </View>
+      {totalCartProduct > 0 && (
+        <View style={[badge, { backgroundColor: appTheme.darkYellow }]}>
+          <CustomText style={[fonts.Light, { color: appTheme.tint }]}>
+            {totalCartProduct?.toString()}
+          </CustomText>
+        </View>
+      )}
       <Image
         resizeMode="contain"
         source={{ uri: AppImages.icBag }}

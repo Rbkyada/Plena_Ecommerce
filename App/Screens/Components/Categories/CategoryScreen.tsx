@@ -1,8 +1,9 @@
-import { SafeAreaView } from 'react-native';
 import React, { useContext } from 'react';
+import { SafeAreaView } from 'react-native';
 import { CustomText } from '@CommonComponent';
 import CommonStyle from '@Theme/CommonStyle';
 import { AppContext } from '@AppContext';
+import { fonts } from '@Utils/Constant';
 
 const CategoryScreen = () => {
   const { appTheme } = useContext(AppContext);
@@ -13,7 +14,7 @@ const CategoryScreen = () => {
         CommonStyle.center,
         { backgroundColor: appTheme.background },
       ]}>
-      <CustomText>CategoryScreen</CustomText>
+      <CustomText style={[fonts.SemiBold]}>Category</CustomText>
     </SafeAreaView>
   );
 };

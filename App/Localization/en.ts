@@ -14,9 +14,18 @@ const en = {
   FAVORITES: 'Favorites',
   SOMETHING_WENT_WRONG: 'Something went wrong',
   ADD_TO_CART: 'Add to cart',
+  ADDED_TO_CART: 'Added to cart',
   BUY_NOW: 'Buy now',
   DETAILS: 'Details',
   REVIEW: '110 Reviews',
+  SHOPPING_CART: 'Shopping Cart',
+  EMPTY_CART_TEXT: 'Sorry, your cart is empty!',
+  PROCEED_TO_CHECKOUT: 'Proceed to checkout',
+  SUB_TOTAL: 'Subtotal',
+  DELIVERY_CHARGES: 'Delivery charges',
+  TOTAL: 'Total',
+  PRODUCT_ADDED_TO_CART: 'Product added to cart',
+  PRODUCT_REMOVED_FROM_CART: 'Product removed from cart',
 };
 
 export { en };

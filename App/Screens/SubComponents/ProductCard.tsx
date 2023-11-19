@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
-import { View, Pressable, Image, StyleSheet } from 'react-native';
+import { View, Pressable, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { CustomText, NetworkImage } from '@CommonComponent';
 import { AppContext } from '@AppContext';
-import { getRound, getSize, navigateToNextScreen } from '@Utils/Helper';
+import { getRound, navigateToNextScreen } from '@Utils/Helper';
 import { width } from '@Utils/Constant';
-import AppImages from '@Theme/AppImages';
 import { Route } from '@Routes/AppRoutes';
 import { Product } from '@Utils/Interface';
 import { FavoriteBtn } from '@SubComponents/FavoriteBtn';
 import { useAppDispatch } from '@Stores';
 import { getCurrentProductDetail } from '@Actions/ProductAction';
+import { AddCartBadge } from '@SubComponents/index';
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -62,7 +62,6 @@ const ProductCard = (props: ProductCardProps) => {
     cardContainer,
     imgStyle,
     priceContainer,
-    addCartBtnStyle,
     heartContainer,
     priceInnerView,
   } = styles;
@@ -98,14 +97,7 @@ const ProductCard = (props: ProductCardProps) => {
             {title}
           </CustomText>
         </View>
-        <Pressable
-          style={[addCartBtnStyle, { backgroundColor: appTheme.themeColor }]}>
-          <Image
-            resizeMode="contain"
-            source={{ uri: AppImages.icPlus }}
-            style={[getSize(20), { tintColor: appTheme.tint }]}
-          />
-        </Pressable>
+        <AddCartBadge itemDetails={props.itemDetails} />
       </View>
     </Pressable>
   );

@@ -1,13 +1,13 @@
-import { Product } from 'Utils/Interface';
+import { CartProduct } from '@Utils/Interface';
 
 export interface CartDefault {
-  products?: Product[];
-  totalProducts?: number;
+  cartList?: CartProduct[];
+  totalCartProduct: number;
 }
 
 const cartDefault: CartDefault = {
-  products: [],
-  totalProducts: 0,
+  cartList: [],
+  totalCartProduct: 0,
 };
 
 export default cartDefault;

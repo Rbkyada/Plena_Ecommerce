@@ -1,1 +1,1 @@
-export const ADD_TO_CART = 'ADD_TO_CART';
+export const ADD_OR_REMOVE_FROM_CART = 'ADD_OR_REMOVE_FROM_CART';

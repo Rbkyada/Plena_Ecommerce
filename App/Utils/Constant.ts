@@ -33,3 +33,5 @@ export const alertData = {
     subTitle: 'To continue to use the BoilerPlate,\nyou must update your app.',
   },
 };
+
+export const DELIVERY_CHARGES = 2;

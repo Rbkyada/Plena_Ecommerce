@@ -80,7 +80,6 @@ const NavigationBar = (props: NavigationBarProps) => {
       numberOfLines={titleNumberOfLines}
       maxLength={titleMaxLength}
       style={[
-        styles.title,
         !titleCenter && showBack && styles.marginLeft,
         !titleCenter && CommonStyle.flex1,
         titleTextStyle,
@@ -197,7 +196,6 @@ const styles = StyleSheet.create({
   marginLeft: {
     marginLeft: 15,
   },
-  title: { fontWeight: 'bold' },
   icBack: {
     height: 14,
     width: 14,

@@ -47,7 +47,7 @@ const HomeScreen = () => {
       />
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, isLoading]);
 
   return (
     <Layout padding={0} headerHide>

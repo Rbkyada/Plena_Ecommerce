@@ -1,6 +1,7 @@
-import { StyleSheet, View } from 'react-native';
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
+import { Image, StyleSheet, View } from 'react-native';
 import { Rating } from 'react-native-ratings';
+import { useAppSelector } from '@Stores';
 import {
   CartBadge,
   CustomText,
@@ -9,10 +10,11 @@ import {
   ProductSlider,
 } from '@CommonComponent';
 import { AppContext } from '@AppContext';
-import { useAppSelector } from '@Stores';
 import { fonts, width } from '@Utils/Constant';
 import { FavoriteBtn } from '@SubComponents/FavoriteBtn';
-import { ButtonComponent } from '@SubComponents';
+import { AddCartBadge } from '@SubComponents/index';
+import { getRound, getSize } from '@Utils/Helper';
+import AppImages from '@Theme/AppImages';
 
 const styles = StyleSheet.create({
   titleContainer: {
@@ -42,11 +44,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 17,
     marginVertical: 10,
-  },
-  btnStyle: {
-    borderWidth: 1,
-    width: width * 0.44,
-    borderRadius: 20,
   },
   headingStyle: {
     paddingHorizontal: 20,
@@ -89,6 +86,17 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   cardBadgeStyle: { marginRight: 20 },
+  btnOuterView: {
+    position: 'relative',
+  },
+  tickBadgeContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...getRound(25),
+    position: 'absolute',
+    right: -3,
+    top: 0,
+  },
 });
 
 const ProductDetailsScreen = () => {
@@ -98,12 +106,13 @@ const ProductDetailsScreen = () => {
     state => state.product.currentProduct,
   );
 
+  const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
+
   const {
     titleContainer,
     favExStyle,
     productTitle,
     btnContainer,
-    btnStyle,
     headingStyle,
     productDetailsStyle,
     ratingStyle,
@@ -112,6 +121,8 @@ const ProductDetailsScreen = () => {
     cutOffStyle,
     priceContainer,
     cardBadgeStyle,
+    btnOuterView,
+    tickBadgeContainer,
   } = styles;
 
   const LoadingContainer = useCallback(() => {
@@ -169,20 +180,41 @@ const ProductDetailsScreen = () => {
               </View>
             </View>
             <View style={btnContainer}>
-              <ButtonComponent
-                title={translations.ADD_TO_CART}
-                backColor="transparent"
-                textColor={appTheme.themeColor}
-                style={[btnStyle, { borderColor: appTheme.themeColor }]}
-                onPress={() => {}}
-              />
-              <ButtonComponent
-                title={translations.BUY_NOW}
-                style={[btnStyle, { borderColor: appTheme.themeColor }]}
-                onPress={() => {}}
+              <View style={btnOuterView}>
+                <AddCartBadge
+                  itemDetails={data}
+                  isBtn
+                  onAction={value => {
+                    setIsAddedToCart(value);
+                  }}
+                  isBtnText={
+                    (isAddedToCart && translations.ADDED_TO_CART) ||
+                    translations.ADD_TO_CART
+                  }
+                  btnBackColor="transparent"
+                  btnTextColor={appTheme.themeColor}
+                />
+                {isAddedToCart && (
+                  <View
+                    style={[
+                      tickBadgeContainer,
+                      { backgroundColor: appTheme.themeColor },
+                    ]}>
+                    <Image
+                      resizeMode="contain"
+                      source={{ uri: AppImages.tick }}
+                      style={[getSize(10), { tintColor: appTheme.tint }]}
+                    />
+                  </View>
+                )}
+              </View>
+              <AddCartBadge
+                itemDetails={data}
+                isBtn
+                isBuyNow
+                isBtnText={translations.BUY_NOW}
               />
             </View>
-
             <CustomText large style={[headingStyle, { color: appTheme.text }]}>
               {translations.DETAILS}
             </CustomText>
@@ -196,7 +228,7 @@ const ProductDetailsScreen = () => {
       </>
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, isAddedToCart]);
 
   return (
     <Layout
