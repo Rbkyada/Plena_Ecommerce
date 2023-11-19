@@ -21,3 +21,16 @@ export interface BillingInfo {
   delivery: number;
   total: number;
 }
+
+export interface poolDropDown {
+  count: CountData;
+  value: string;
+  label: string;
+  img: string;
+}
+
+export interface CountData {
+  weeklyOptions: number;
+  monthlyOptions: number;
+  yearlyOptions: number;
+}

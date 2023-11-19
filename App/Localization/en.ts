@@ -27,6 +27,8 @@ const en = {
   TOTAL: 'Total',
   PRODUCT_ADDED_TO_CART: 'Product added to cart',
   PRODUCT_REMOVED_FROM_CART: 'Product removed from cart',
+  SELECT_ADDRESS: 'Select Address',
+  SELECT_DELIVERY_TIME: 'Select Delivery Time',
 };
 
 export { en };

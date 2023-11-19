@@ -24,6 +24,11 @@ const CommonStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  rowSpaceBetween: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   input: {
     height: 50,
     marginBottom: 15,
