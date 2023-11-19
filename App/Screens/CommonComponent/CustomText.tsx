@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import {
   GestureResponderEvent,
   StyleProp,
+  StyleSheet,
   Text,
   TextStyle,
 } from 'react-native';
@@ -73,7 +74,12 @@ const CustomText = (props: CustomProps) => {
     <Text
       {...props}
       numberOfLines={numberOfLines}
-      style={[getFontSize(), fonts.Regular, { color: appTheme.text }, style]}>
+      style={StyleSheet.flatten([
+        getFontSize(),
+        fonts.Regular,
+        { color: appTheme.text },
+        style,
+      ])}>
       {renderChildren()}
     </Text>
   );

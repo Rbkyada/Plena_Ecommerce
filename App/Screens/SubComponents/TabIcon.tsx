@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import { Image } from 'react-native';
 import { getSize } from '@Utils/Helper';
 import { AppContext } from '@AppContext';
@@ -8,7 +8,7 @@ interface TabIconProps {
   tabIcon: string;
 }
 
-const TabIcon = (props: TabIconProps) => {
+const TabIcon = memo((props: TabIconProps) => {
   const { appTheme } = useContext(AppContext);
   const { focused, tabIcon } = props;
   return (
@@ -16,13 +16,11 @@ const TabIcon = (props: TabIconProps) => {
       resizeMode="contain"
       style={[
         getSize(24),
-        {
-          tintColor: (focused && appTheme.tabIconFill) || appTheme.text,
-        },
+        { tintColor: (focused && appTheme.tabIconFill) || appTheme.text },
       ]}
       source={{ uri: tabIcon }}
     />
   );
-};
+});
 
 export { TabIcon };

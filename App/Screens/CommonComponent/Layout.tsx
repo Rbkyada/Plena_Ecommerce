@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import {
   KeyboardAvoidingView,
   StatusBar,
@@ -51,7 +51,7 @@ interface LayoutProps {
   statusBarStyle?: 'light-content' | 'dark-content';
 }
 
-const Layout = (props: LayoutProps) => {
+const Layout = memo((props: LayoutProps) => {
   const { appTheme } = useContext(AppContext);
   const {
     children,
@@ -128,7 +128,7 @@ const Layout = (props: LayoutProps) => {
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
-};
+});
 
 const styles = StyleSheet.create({
   keyboardView: {

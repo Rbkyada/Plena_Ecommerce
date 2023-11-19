@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import { Image, Pressable, StyleSheet } from 'react-native';
 import { getRound, getSize } from '@Utils/Helper';
 import { AppContext } from '@AppContext';
@@ -16,7 +16,7 @@ interface CardBtnProps {
   onBtnPress?: () => void;
 }
 
-const CartBtn = (props: CardBtnProps) => {
+const CartBtn = memo((props: CardBtnProps) => {
   const { appTheme } = useContext(AppContext);
   const { btnContainer } = styles;
 
@@ -32,6 +32,6 @@ const CartBtn = (props: CardBtnProps) => {
       />
     </Pressable>
   );
-};
+});
 
 export { CartBtn };

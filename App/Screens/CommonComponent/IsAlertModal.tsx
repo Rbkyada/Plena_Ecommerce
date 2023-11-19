@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import {
   Modal,
   View,
@@ -45,165 +45,169 @@ interface CustomProps {
   titleStyle?: StyleProp<TextStyle>;
   subTitleStyle?: StyleProp<TextStyle>;
 }
-const IsAlertModal = ({
-  visible = false,
-  onClose,
-  leftBtn,
-  rightBtn,
-  data = { title: '', subTitle: '' },
-  isProcessing = false,
-  emailInput,
-  userNameInput,
-  error = '',
-  deleteAccount = false,
-  deleteTextInput,
-  setDeleteTextInput,
-  titleStyle,
-  subTitleStyle,
-}: CustomProps) => {
-  const { appTheme } = useContext(AppContext);
+const IsAlertModal = memo(
+  ({
+    visible = false,
+    onClose,
+    leftBtn,
+    rightBtn,
+    data = { title: '', subTitle: '' },
+    isProcessing = false,
+    emailInput,
+    userNameInput,
+    error = '',
+    deleteAccount = false,
+    deleteTextInput,
+    setDeleteTextInput,
+    titleStyle,
+    subTitleStyle,
+  }: CustomProps) => {
+    const { appTheme } = useContext(AppContext);
 
-  if (!data) {
-    return null;
-  }
+    if (!data) {
+      return null;
+    }
 
-  const renderModal = () => {
-    const { title, subTitle } = data;
+    const renderModal = () => {
+      const { title, subTitle } = data;
 
-    return (
-      <KeyboardAvoidingView
-        behavior={(isIOS && 'padding') || undefined}
-        style={[
-          CommonStyle.flexContainer,
-          CommonStyle.center,
-          { backgroundColor: appTheme.overlay },
-        ]}>
-        <TouchableOpacity
+      return (
+        <KeyboardAvoidingView
+          behavior={(isIOS && 'padding') || undefined}
           style={[
-            CommonStyle.absoluteView,
-            { backgroundColor: appTheme.transparent },
-          ]}
-          activeOpacity={1}
-          onPress={onClose}>
-          <View />
-        </TouchableOpacity>
-        <View style={[styles.card, { backgroundColor: appTheme.background }]}>
-          <View style={styles.footer}>
-            <CustomText
-              xlarge
-              style={[
-                styles.title,
-                {
-                  color: appTheme.text,
-                },
-                titleStyle,
-              ]}>
-              {title}
-            </CustomText>
-            {(subTitle && (
+            CommonStyle.flexContainer,
+            CommonStyle.center,
+            { backgroundColor: appTheme.overlay },
+          ]}>
+          <TouchableOpacity
+            style={[
+              CommonStyle.absoluteView,
+              { backgroundColor: appTheme.transparent },
+            ]}
+            activeOpacity={1}
+            onPress={onClose}>
+            <View />
+          </TouchableOpacity>
+          <View style={[styles.card, { backgroundColor: appTheme.background }]}>
+            <View style={styles.footer}>
               <CustomText
-                large
+                xlarge
                 style={[
-                  styles.subTitle,
+                  styles.title,
                   {
-                    color: appTheme.gray,
+                    color: appTheme.text,
                   },
-                  subTitleStyle,
+                  titleStyle,
                 ]}>
-                {subTitle}
+                {title}
               </CustomText>
-            )) ||
-              null}
-            {(deleteAccount && (
-              <CustomText
-                large
-                style={styles.deleteAccountText}
-                children={
-                  <View style={[CommonStyle.row, styles.deleteText]}>
-                    <CustomText>{'Please type '}</CustomText>
-                    <CustomText
-                      large
-                      style={[
-                        styles.deleteStyle,
-                        {
-                          color: appTheme.themeColor,
-                        },
-                      ]}>
-                      {'DELETE '}
-                    </CustomText>
-                    <CustomText>to confirm.</CustomText>
-                  </View>
-                }
-              />
-            )) ||
-              null}
+              {(subTitle && (
+                <CustomText
+                  large
+                  style={[
+                    styles.subTitle,
+                    {
+                      color: appTheme.gray,
+                    },
+                    subTitleStyle,
+                  ]}>
+                  {subTitle}
+                </CustomText>
+              )) ||
+                null}
+              {(deleteAccount && (
+                <CustomText
+                  large
+                  style={styles.deleteAccountText}
+                  children={
+                    <View style={[CommonStyle.row, styles.deleteText]}>
+                      <CustomText>{'Please type '}</CustomText>
+                      <CustomText
+                        large
+                        style={[
+                          styles.deleteStyle,
+                          {
+                            color: appTheme.themeColor,
+                          },
+                        ]}>
+                        {'DELETE '}
+                      </CustomText>
+                      <CustomText>to confirm.</CustomText>
+                    </View>
+                  }
+                />
+              )) ||
+                null}
 
-            {(deleteAccount && (
-              <CustomTextInput
-                containerStyle={[styles.DeleteTextInput]}
-                onTextChange={text => {
-                  setDeleteTextInput!(text);
-                }}
-                placeholder="Type here..."
-                value={deleteTextInput}
-                label=""
-              />
-            )) ||
-              null}
-
-            {(emailInput && (
-              <View style={styles.textInput}>{emailInput}</View>
-            )) ||
-              null}
-            {(userNameInput && (
-              <View style={styles.textInput}>{userNameInput}</View>
-            )) ||
-              null}
-            {(error && (
-              <View style={styles.errorOuter}>
-                <CustomText style={{ color: appTheme.red }}>{error}</CustomText>
-              </View>
-            )) ||
-              null}
-            <View style={styles.bottomBtn}>
-              {(leftBtn && (
-                <ButtonComponent
-                  onPress={() => {
-                    leftBtn.onPress();
+              {(deleteAccount && (
+                <CustomTextInput
+                  containerStyle={[styles.DeleteTextInput]}
+                  onTextChange={text => {
+                    setDeleteTextInput!(text);
                   }}
-                  title={leftBtn.title}
-                  textColor={leftBtn.textColor}
-                  style={[styles.btnOuter, leftBtn.style]}
+                  placeholder="Type here..."
+                  value={deleteTextInput}
+                  label=""
                 />
               )) ||
                 null}
-              {(rightBtn && (
-                <ButtonComponent
-                  isProcessing={isProcessing}
-                  onPress={rightBtn.onPress}
-                  title={rightBtn.title}
-                  textColor={rightBtn.textColor}
-                  style={[styles.btnOuter, rightBtn.style]}
-                />
+
+              {(emailInput && (
+                <View style={styles.textInput}>{emailInput}</View>
               )) ||
                 null}
+              {(userNameInput && (
+                <View style={styles.textInput}>{userNameInput}</View>
+              )) ||
+                null}
+              {(error && (
+                <View style={styles.errorOuter}>
+                  <CustomText style={{ color: appTheme.red }}>
+                    {error}
+                  </CustomText>
+                </View>
+              )) ||
+                null}
+              <View style={styles.bottomBtn}>
+                {(leftBtn && (
+                  <ButtonComponent
+                    onPress={() => {
+                      leftBtn.onPress();
+                    }}
+                    title={leftBtn.title}
+                    textColor={leftBtn.textColor}
+                    style={[styles.btnOuter, leftBtn.style]}
+                  />
+                )) ||
+                  null}
+                {(rightBtn && (
+                  <ButtonComponent
+                    isProcessing={isProcessing}
+                    onPress={rightBtn.onPress}
+                    title={rightBtn.title}
+                    textColor={rightBtn.textColor}
+                    style={[styles.btnOuter, rightBtn.style]}
+                  />
+                )) ||
+                  null}
+              </View>
             </View>
           </View>
-        </View>
-      </KeyboardAvoidingView>
-    );
-  };
+        </KeyboardAvoidingView>
+      );
+    };
 
-  return (
-    <Modal
-      visible={visible}
-      transparent={true}
-      animationType="none"
-      onRequestClose={onClose}>
-      {renderModal()}
-    </Modal>
-  );
-};
+    return (
+      <Modal
+        visible={visible}
+        transparent={true}
+        animationType="none"
+        onRequestClose={onClose}>
+        {renderModal()}
+      </Modal>
+    );
+  },
+);
 export { IsAlertModal };
 
 const styles = StyleSheet.create({

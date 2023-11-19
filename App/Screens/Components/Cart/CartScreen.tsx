@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useCallback, useContext } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { CustomText, Layout } from '@CommonComponent';
 import { AppContext } from '@AppContext';
@@ -60,21 +61,21 @@ const CartScreen = () => {
     return <ProductActionCard item={item} index={index} />;
   };
 
-  const renderEmptyCart = () => {
+  const renderEmptyCart = useCallback(() => {
     return (
       <View style={emptyCartText}>
         <CustomText large>{translations.EMPTY_CART_TEXT}</CustomText>
       </View>
     );
-  };
+  }, []);
 
-  const itemSeparator = () => {
+  const itemSeparator = useCallback(() => {
     return (
       <View
         style={[separatorStyle, { backgroundColor: appTheme.lightGrayBack }]}
       />
     );
-  };
+  }, []);
 
   return (
     <>

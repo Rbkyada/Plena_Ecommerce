@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import AppImages from '@Theme/AppImages';
 import { getSize } from '@Utils/Helper';
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const SearchBar = () => {
+const SearchBar = memo(() => {
   const { appTheme, translations } = useContext(AppContext);
 
   const { searchContainer } = styles;
@@ -35,6 +35,6 @@ const SearchBar = () => {
       </CustomText>
     </View>
   );
-};
+});
 
 export { SearchBar };

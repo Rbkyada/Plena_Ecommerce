@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {
   TouchableOpacity,
   GestureResponderEvent,
@@ -22,7 +22,7 @@ interface TouchableTextProps {
   };
 }
 
-const TouchableText = (props: TouchableTextProps) => {
+const TouchableText = memo((props: TouchableTextProps) => {
   const { onPress, text, style } = props;
 
   return (
@@ -38,7 +38,7 @@ const TouchableText = (props: TouchableTextProps) => {
       )}
     </TouchableOpacity>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

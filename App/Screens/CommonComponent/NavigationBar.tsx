@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import {
   Image,
   ImageStyle,
@@ -45,7 +45,7 @@ interface NavigationBarProps {
   };
 }
 
-const NavigationBar = (props: NavigationBarProps) => {
+const NavigationBar = memo((props: NavigationBarProps) => {
   const { appTheme } = useContext(AppContext);
   const {
     title,
@@ -183,7 +183,7 @@ const NavigationBar = (props: NavigationBarProps) => {
       {rightComponent && rightComponent}
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

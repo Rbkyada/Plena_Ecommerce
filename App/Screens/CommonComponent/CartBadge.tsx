@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import {
   Image,
   ImageStyle,
@@ -54,15 +54,22 @@ const CartBadge = (props: CartBadgeProps) => {
     });
   };
 
-  return (
-    <Pressable style={[container, exContainerStyle]} onPress={onCartPress}>
-      {totalCartProduct > 0 && (
+  const renderBadge = useMemo(() => {
+    if (totalCartProduct > 0) {
+      return (
         <View style={[badge, { backgroundColor: appTheme.darkYellow }]}>
           <CustomText style={[fonts.Light, { color: appTheme.tint }]}>
             {totalCartProduct?.toString()}
           </CustomText>
         </View>
-      )}
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [totalCartProduct]);
+
+  return (
+    <Pressable style={[container, exContainerStyle]} onPress={onCartPress}>
+      {renderBadge}
       <Image
         resizeMode="contain"
         source={{ uri: AppImages.icBag }}

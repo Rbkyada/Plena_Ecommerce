@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleProp, TextStyle, View, ViewStyle } from 'react-native';
 import { CustomText, Loading } from '@CommonComponent';
 import CommonStyle from '@Theme/CommonStyle';
@@ -9,7 +9,7 @@ interface CustomProps {
   text?: string;
   textStyle?: StyleProp<TextStyle>;
 }
-const EmptyComponent = (props: CustomProps) => {
+const EmptyComponent = memo((props: CustomProps) => {
   const { isLoading = false, textStyle, style } = props;
   const text = props.text ?? 'No Data Found';
   return (
@@ -19,6 +19,6 @@ const EmptyComponent = (props: CustomProps) => {
       )}
     </View>
   );
-};
+});
 
 export { EmptyComponent };

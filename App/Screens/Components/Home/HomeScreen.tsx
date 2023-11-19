@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from '@Stores/index';
@@ -73,7 +74,6 @@ const HomeScreen = () => {
         )}
       />
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, isLoading]);
 
   return (

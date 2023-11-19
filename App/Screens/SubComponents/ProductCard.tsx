@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import { View, Pressable, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { CustomText, NetworkImage } from '@CommonComponent';
@@ -51,7 +51,7 @@ interface ProductCardProps {
   itemDetails: Product;
 }
 
-const ProductCard = (props: ProductCardProps) => {
+const ProductCard = memo((props: ProductCardProps) => {
   const { appTheme } = useContext(AppContext);
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
@@ -101,6 +101,6 @@ const ProductCard = (props: ProductCardProps) => {
       </View>
     </Pressable>
   );
-};
+});
 
 export { ProductCard };

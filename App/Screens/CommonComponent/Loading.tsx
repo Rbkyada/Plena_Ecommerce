@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import {
   ActivityIndicator,
   ColorValue,
@@ -13,7 +13,7 @@ interface LoadingProps {
   color?: ColorValue;
 }
 
-const Loading = (props: LoadingProps) => {
+const Loading = memo((props: LoadingProps) => {
   const { appTheme } = useContext(AppContext);
 
   const { size, style, color } = props;
@@ -25,6 +25,6 @@ const Loading = (props: LoadingProps) => {
       color={color ?? appTheme.themeColor}
     />
   );
-};
+});
 
 export { Loading };
